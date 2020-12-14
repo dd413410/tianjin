@@ -1,0 +1,72 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.lt {
+	float: left;
+}
+
+.rt {
+	float: right;
+}
+
+dl,
+li {
+	list-style: none;
+}
+
+html {
+	width: 680px;
+	height: 450px;
+	overflow: hidden;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	padding: 0 15px;
+	box-sizing: border-box;
+	background-color: #08132c;
+}
+
+
+.title {
+	height: 40px;
+	line-height: 40px;
+	color: #fff;
+	font-size: 16px;
+	overflow: hidden;
+	box-sizing: border-box;
+}
+.layForm {
+	color: #fff;
+	font-size: 14px;
+}
+.layui-form-item {
+	margin-bottom: 10px;
+}
+
+.lay_ipt {
+	background-color: #112350;
+	color: #fff;
+	border: none;
+}
+
+.lay_ipt .layui-input {
+	background-color: #112350;
+	color: #fff;
+	border: none;
+}
+
+.lay_ipt .layui-textarea {
+	background-color: #112350;
+	color: #fff;
+	border: none;
+}
+.lay_sele {
+	color: #000 !important;
+}
+.subbtn {
+	background-color: #5a98de;
+}

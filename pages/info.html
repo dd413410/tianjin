@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>人员信息</title>
+		<link rel="stylesheet" href="../public/lib/layui/css/layui.css" />
+		<link rel="stylesheet" href="../css/info.css" />
+	</head>
+	<body>
+		<div class="layui-fluid">
+			<div class="layui-row">
+				<div class="layui-col-xs12">
+					<div class="tle">
+						<p class="lt">
+							人员信息
+						</p>
+						<p class="rt layui-icon layui-icon-close" style="cursor: pointer;" id="close"></p>
+					</div>
+				</div>
+			</div>
+
+			<div class="layui-row title">
+				<div class="block">
+					<div class="layui-input-block lt">
+						<input type="text" id="retr" autocomplete="off" placeholder="请输入人员姓名" class="layui-input lay_ipt" />
+					</div>
+					<div class="lt">
+						<button class="layui-btn subbtn" onclick="getFn()">
+							查询
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="layui-row count">
+				<div class="layui-col-xs4">
+					<button class="layui-btn subbtn" onclick="openFn()">
+						添加人员
+					</button>
+				</div>
+				<div class="layui-col-xs4 layui-col-md-offset4 num">
+					共有人员<span id="total">0</span>位
+				</div>
+			</div>
+
+			<div class="layui-row thead">
+				<div class="layui-col-xs2">姓名</div>
+				<div class="layui-col-xs2">所属站点</div>
+
+				<div class="layui-col-xs3">值班日</div>
+				<div class="layui-col-xs3">备注</div>
+				<div class="layui-col-xs2">操作</div>
+			</div>
+			<div class="layui-row" id="tbody">
+				<!-- <div class='tbody'>
+					<div class="layui-col-xs2">测试</div>
+					<div class="layui-col-xs2">测试</div>
+					<div class="layui-col-xs3">测试</div>
+					<div class="layui-col-xs3">测试</div>
+					<div class="layui-col-xs2">
+						<img onclick="openFn('1','2','3')" src="../static/2.png" title="修改信息" />
+						<img onclick="deleFn('3')" src="../static/4.png" title="删除" />
+					</div>
+				</div> -->
+			</div>
+			<div id="pag"></div>
+		</div>
+	</body>
+
+	<script src="../public/lib/layui/layui.js"></script>
+	<script>
+		layui
+			.config({
+				base: "../public/",
+			})
+			.extend({
+				urls: "lib/urls",
+				info: "js/info",
+			})
+			.use("info");
+	</script>
+</html>

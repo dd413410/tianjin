@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>修改人员信息</title>
+		<link rel="stylesheet" href="../public/lib/layui/css/layui.css" />
+		<link rel="stylesheet" href="../css/infoChange.css" />
+	</head>
+	<body>
+
+
+		<div class="title">
+			<p class="lt">
+				修改人员信息
+			</p>
+			<p class="rt layui-icon layui-icon-close" style="cursor: pointer;" id="close"></p>
+		</div>
+		<div class="layui-form layForm" lay-filter="layForm">
+			<input type="hidden" name="id">
+			<div class="layui-form-item">
+				<label class="layui-form-label">姓名:</label>
+				<div class="layui-input-block lay_ipt lay_sele">
+					<input type="text" name="personnel" disabled class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">值班日:</label>
+				<div class="layui-input-block" id="duty">
+					<input type="checkbox" value="1" lay-skin="primary" title="周一">
+					<input type="checkbox" value="2" lay-skin="primary" title="周二">
+					<input type="checkbox" value="3" lay-skin="primary" title="周三">
+					<input type="checkbox" value="4" lay-skin="primary" title="周四">
+					<input type="checkbox" value="5" lay-skin="primary" title="周五">
+					<input type="checkbox" value="6" lay-skin="primary" title="周六">
+					<input type="checkbox" value="7" lay-skin="primary" title="周日">
+				</div>
+			</div>
+
+			<div class="site-item">
+				<div class="layui-form-item">
+					<label class="layui-form-label">所属站点:</label>
+					<div class="layui-input-block">
+						<div class="lay_ipt lay_sele">
+							<select name="ofCountry" id="ofCountry" fn="getErFn" lay-filter="filt">
+								<!-- <option value="1">台站</option>
+											<option value="2">中心站</option>
+											<option value="3">海区中心</option>
+											<option value="4">国家中心</option> -->
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<div class="layui-form-item">
+					<label class="layui-form-label label"></label>
+					<div class="layui-input-block lock">
+						<div class="lay_ipt lay_sele">
+							<select name="ofArea" id="ofArea" fn="getSanFn" lay-filter="filt">
+								<!-- <option value="1">台站</option>
+											<option value="2">中心站</option>
+											<option value="3">海区中心</option>
+											<option value="4">国家中心</option> -->
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<div class="layui-form-item">
+					<label class="layui-form-label label"></label>
+					<div class="layui-input-block lock">
+						<div class="lay_ipt lay_sele">
+							<select name="ofCenter" id="ofCenter" lay-filter="filt">
+								<!-- <option value="1">台站</option>
+											<option value="2">中心站</option>
+											<option value="3">海区中心</option>
+											<option value="4">国家中心</option> -->
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">备注:</label>
+				<div class="layui-input-block lay_ipt">
+					<textarea name="description" placeholder="请输入备注" class="layui-textarea" style="resize:none;"></textarea>
+				</div>
+			</div>
+
+
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<button type="submit" class="layui-btn subbtn" lay-submit lay-filter="sub">
+						提交
+					</button>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../public/lib/layui/layui.js"></script>
+	<script>
+		layui
+			.config({
+				base: "../public/",
+			})
+			.extend({
+				urls: "lib/urls",
+				func: "lib/func",
+				infoChange: "js/infoChange",
+			})
+			.use("infoChange");
+	</script>
+</html>

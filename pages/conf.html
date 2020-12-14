@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>站点信息</title>
+		<link rel="stylesheet" href="../public/lib/layui/css/layui.css" />
+		<link rel="stylesheet" href="../css/conf.css" />
+	</head>
+	<body>
+		<div class="head">
+			传输任务管理
+			<p class="layui-icon layui-icon-close" id="close"></p>
+		</div>
+
+		<!-- 左侧 -->
+		<div class="side-lt">
+			<p class="sub-tle">任务列表</p>
+			<div class="side-list">
+				<!-- <div class="side-mask" id="side-mask"></div> -->
+				<div class="side-tle">
+					<p class="lt lt-p">序号</p>
+					<p class="rt rt-p">名称</p>
+				</div>
+				<div class="side-list-box" id="task">
+					<!-- <div class="side-list-item">
+						<p class="lt lt-p">序号</p>
+						<p class="rt rt-p">名称</p>
+					</div> -->
+				</div>
+			</div>
+			<div class="side-btn">
+				<p class="lt btn1" id="addTask">
+					<img src="../static/zj.png" alt="">
+					增加
+				</p>
+				<p class="rt" id="deleTask">
+					<img src="../static/qx.png" alt="">
+					删除
+				</p>
+			</div>
+		</div>
+		<!-- 右侧 -->
+		<div class="side-rt">
+			<p class="sub-tle">任务设置</p>
+			<div class="side-swiper" id="swiper">
+				<p class="add" idx="1">第一步,数据目录</p>
+				<p idx="2">第二步,传输规则</p>
+				<p idx="3">第三步,传输目的地</p>
+				<p idx="4">第四步,传输链路</p>
+			</div>
+			<!-- 第一步 -->
+			<div class="swiper-box swiper-box1" id="swiper1">
+				<div class="swiper-list">
+					<div class="swiper-tle">
+						<p>操作</p>
+						<p>数据类型</p>
+						<p>按规则整理目录</p>
+						<p>规则文件</p>
+						<p>目录</p>
+					</div>
+					<div class="swiper-list-box layui-form" id="swiper-box-a">
+						<!-- <div class="swiper-list-item">
+							<p>
+								<input type="radio" name="sex" value="男">
+							</p>
+							<p>数据类型数据类型数据类型数据类型</p>
+							<p>数据类型</p>
+							<p>数据类型</p>
+							<p>数据类型</p>
+						</div>
+						<div class="swiper-list-item">
+							<p>
+								<input type="radio" name="sex" value="男" checked>
+							</p>
+							<p>数据类型数据类型数据类型数据类型</p>
+							<p>数据类型</p>
+							<p>数据类型</p>
+							<p>数据类型</p>
+						</div> -->
+					</div>
+				</div>
+				<form class="layui-form swiper-form" lay-filter="AForm" id="AForm">
+					<div class="layui-form-item">
+						<div class="layui-input-inline swiper-label1">
+							<label class="layui-form-label">数据类型</label>
+							<div class="layui-input-block">
+								<input type="text" name="Name" required lay-verify="Name" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-input-inline check">
+							<input type="checkbox" id="check" name="TaskDir" lay-skin="primary" checked="">
+						</div>
+						<div class="layui-input-inline swiper-label2">
+							<label class="layui-form-label">按规则整理目录</label>
+							<div class="layui-input-block">
+								<input type="text" name="TaskFile" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+					</div>
+					<div class="layui-form-item swiper-label3">
+						<label class="layui-form-label">目录</label>
+						<div class="layui-input-block">
+							<input type="text" name="Path" autocomplete="off" class="layui-input">
+							<!-- <input type="text" name="Path" required lay-verify="Path" autocomplete="off" class="layui-input"> -->
+						</div>
+					</div>
+
+					<div class="swiper-btn">
+						<p class="lt btn1" id="btn11" lay-submit lay-filter="formASub">
+							<img src="../static/zj.png" alt="">
+							增加
+						</p>
+						<p class="lt btn2" id="btn12">
+							<img src="../static/qx.png" alt="">
+							删除
+						</p>
+					</div>
+				</form>
+			</div>
+			<!-- 第二步 -->
+			<div class="swiper-box swiper-box2" id="swiper2">
+				<div class="swiper-lt-box">
+					<p class="sub-tle">上传目录选择</p>
+					<div class="swiper-list">
+						<div class="swiper-tle">
+							<p>操作</p>
+							<p>目录</p>
+						</div>
+						<div class="swiper-list-box layui-form" id="swiper-box-b">
+							<!-- <div class="swiper-list-item">
+								<p>
+									<input type="radio" name="sex" value="男">
+								</p>
+								<p>数据类型数据类型数据类型数据类型</p>
+							</div> -->
+						</div>
+					</div>
+
+					<form class="layui-form" lay-filter="BForm" id="BForm">
+						<div class="layui-form-item">
+							<label class="layui-form-label">目录</label>
+							<div class="layui-input-inline">
+								<select id="pickB">
+									<!-- <option value=""></option> -->
+								</select>
+							</div>
+							<div class="layui-input-inline">
+								<input type="text" name="Path" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="swiper-desc">
+							说明：只能输入选择的目录；如果为空，则上传全部目录。
+						</div>
+						<div class="swiper-btn">
+							<p class="lt btn1" lay-submit lay-filter="formBSub">
+								<img src="../static/zj.png" alt="">
+								增加
+							</p>
+							<p class="lt btn2" id="btn22">
+								<img src="../static/qx.png" alt="">
+								删除
+							</p>
+						</div>
+					</form>
+
+				</div>
+
+				<div class="swiper-rt-box">
+					<p class="sub-tle">文件过滤</p>
+					<form class="layui-form swiper-form" lay-filter="subForm" id="subForm">
+						<div class="layui-form-item">
+							<input type="radio" name="Type" value="0" title="白名单过滤" checked="">
+							<input type="radio" name="Type" value="1" title="黑名单过滤">
+						</div>
+						<div class="layui-form-item">
+							<textarea name="Value" placeholder="请输入内容" class="layui-textarea swiper-text">*.*</textarea>
+						</div>
+					</form>
+				</div>
+			</div>
+			<!-- 第三步 -->
+			<div class="swiper-box swiper-box3" id="swiper3">
+				<div class="swiper-list">
+					<div class="swiper-tle">
+						<p>操作</p>
+						<p>名称</p>
+						<p>类型</p>
+						<p>保持目录结构</p>
+						<p>目标地址</p>
+						<p>端口</p>
+						<p>目录</p>
+					</div>
+					<div class="swiper-list-box layui-form" id="swiper-box-c">
+						<!-- <div class="swiper-list-item">
+							<p>
+								<input type="radio" name="idx" value="男">
+							</p>
+							<p>数据类型数据类型数据类型数据类型</p>
+							<p>数据类型</p>
+							<p>数据类型</p>
+							<p>数据类型</p>
+							<p>数据类型</p>
+							<p>数据类型</p>
+						</div> -->
+					</div>
+				</div>
+
+				<form class="layui-form swiper-form" lay-filter="CForm" id="CForm">
+					<div class="layui-form-item swiper-label">
+						<div class="layui-input-inline">
+							<label class="layui-form-label">名称</label>
+							<div class="layui-input-block">
+								<input type="text" name="cName" required lay-verify="cName" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-input-inline">
+							<label class="layui-form-label">类型</label>
+							<div class="layui-input-block">
+								<select name="cType">
+									<option value="Soket">Soket</option>
+									<option value="本地存储">本地存储</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-input-inline">
+							<label class="layui-form-label">端口号</label>
+							<div class="layui-input-block">
+								<input type="text" name="cPort" required lay-verify="cPort" value="5050" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+					</div>
+
+					<div class="layui-form-item swiper-label">
+						<div class="layui-input-inline">
+							<label class="layui-form-label">目录</label>
+							<div class="layui-input-block">
+								<input type="text" name="cPath" autocomplete="off" class="layui-input">
+								<!-- <input type="text" name="cPath" required lay-verify="cPath" autocomplete="off" class="layui-input"> -->
+							</div>
+						</div>
+						<div class="layui-input-inline">
+							<label class="layui-form-label">目标地址</label>
+							<div class="layui-input-block">
+								<input type="text" name="cIp" required lay-verify="cIp" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+
+						<div class="layui-input-inline check">
+							<input type="checkbox" name="cKeep" lay-skin="primary" checked="">
+						</div>
+						<div class="layui-input-inline checks">
+							保持目录结构
+						</div>
+					</div>
+
+
+					<div class="swiper-btn">
+						<p class="lt btn1" lay-submit lay-filter="formCSub">
+							<img src="../static/zj.png" alt="">
+							增加
+						</p>
+						<p class="lt btn2" id="btn32">
+							<img src="../static/qx.png" alt="">
+							删除
+						</p>
+					</div>
+				</form>
+			</div>
+			<!-- 第4步 -->
+			<div class="swiper-box swiper-box4" id="swiper4">
+				<div class="swiper-list">
+					<div class="swiper-tle">
+						<p>操作</p>
+						<p>优先级别</p>
+						<p>名称</p>
+						<p>IP地址</p>
+						<p>网关</p>
+					</div>
+					<div class="swiper-list-box layui-form" id="swiper-box-d">
+						<!-- <div class="swiper-list-item">
+							<p>
+								<input type="radio" name="idx" value="男">
+								<button class="layui-btn">上移</button>
+								<button class="layui-btn">下移</button>
+							</p>
+							<p>数据类型</p>
+							<p>数据类型数据类型数据类型数据类型</p>
+							<p>数据类型</p>
+							<p>数据类型</p>
+						</div> -->
+					</div>
+				</div>
+
+				<form class="layui-form swiper-form" lay-filter="DForm" id="DForm">
+					<div class="layui-form-item swiper-label swiper-labels">
+						<label class="layui-form-label">名称</label>
+						<div class="layui-input-block">
+							<input type="text" name="dName" required lay-verify="dName" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+
+					<div class="layui-form-item swiper-label">
+						<div class="layui-input-inline">
+							<label class="layui-form-label">IP地址</label>
+							<div class="layui-input-block">
+								<input type="text" name="dIp" required lay-verify="dIp" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-input-inline">
+							<label class="layui-form-label">网关</label>
+							<div class="layui-input-block">
+								<input type="text" name="dGateway" required lay-verify="dGateway" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+					</div>
+
+					<div class="swiper-btn">
+						<p class="lt btn1" lay-submit lay-filter="formDSub">
+							<img src="../static/zj.png" alt="">
+							增加
+						</p>
+						<p class="lt btn2" id="btn42">
+							<img src="../static/qx.png" alt="">
+							删除
+						</p>
+					</div>
+				</form>
+			</div>
+
+			<div class="rt-save" id="save">
+				<p id="saveBtn">保存应用</p>
+				<!-- <p>取消修改</p> -->
+			</div>
+		</div>
+
+
+	</body>
+	<script src="../public/lib/layui/layui.js"></script>
+	<script>
+		layui
+			.config({
+				base: "../public/",
+			})
+			.extend({
+				urls: "lib/urls",
+				func: "lib/func",
+				conf: "js/conf",
+			})
+			.use("conf");
+	</script>
+</html>

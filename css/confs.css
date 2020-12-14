@@ -1,0 +1,148 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.lt {
+	float: left;
+}
+
+.rt {
+	float: right;
+}
+
+dl,
+li {
+	list-style: none;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	background: #010A1E;
+	box-sizing: border-box;
+}
+
+.tle {
+	height: 40px;
+	line-height: 40px;
+	box-sizing: border-box;
+	color: #fff;
+	font-size: 16px;
+	overflow: hidden;
+}
+
+.conf-center {
+	width: 100%;
+	height: 630px;
+}
+
+.conf-lt {
+	float: left;
+	width: 299px;
+	height: 630px;
+	border-right: 1px solid #35A0C9;
+	padding: 0;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+#elemTree {
+	width: 320px;
+	height: 580px;
+	padding-right: 20px;
+	box-sizing: border-box;
+	overflow: hidden;
+	overflow-y: auto;
+	color: #fff;
+}
+
+.btn-box {
+	padding: 10px 15px;
+	box-sizing: border-box;
+}
+
+.btn-box button {
+	background-color: #5a98de;
+}
+
+.btn-box .obtain {
+	width: 60px;
+}
+
+.conf-list {
+	float: right;
+	width: 1000px;
+	height: 630px;
+	box-sizing: border-box;
+}
+
+.conf-list {
+	padding: 0;
+}
+
+.thead,
+.tbody {
+	text-align: center;
+	color: #fff;
+}
+
+#tbody {
+	height: 460px;
+
+}
+
+.thead>div,
+.tbody>div {
+	height: 46px;
+	line-height: 46px;
+	background-color: #0e1e44;
+	font-size: 14px;
+	padding: 0 5px;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.tbody>div {
+	background-color: rgba(8, 19, 44, 0);
+	border: 1px solid #131a5f;
+}
+
+.layui-form-checkbox[lay-skin=primary] span {
+	color: #fff;
+}
+
+#pag {
+	height: 30px;
+	text-align: right;
+	margin-top: 15px;
+	box-sizing: border-box;
+	padding-right: 15px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.layui-laypage {
+	margin: 0;
+}
+
+body .lay-path .layui-layer-title {
+	color: #fff;
+	border: none;
+	background: #1E9FFF;
+}
+
+body .lay-path .layui-layer-close {
+	background: url(../static/c1.png) no-repeat;
+	background-size: 100% 100%;
+}

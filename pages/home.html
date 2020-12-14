@@ -1,0 +1,359 @@
+<script>
+	var token = sessionStorage.token;
+	if (!token) {
+	    alert("请先登录!")
+	    window.top.location.href = "../index.html";
+	}
+</script>
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>海洋观测数据传输与故障响应系统</title>
+		<link rel="stylesheet" href="../public/lib/layui/css/layui.css" />
+		<link rel="stylesheet" type="text/css" href="../css/home.css" />
+	</head>
+	<body>
+		<div class="head">
+			海洋观测数据传输与故障响应系统
+		</div>
+		<div class="head-deta">
+			<p class="lt">
+				欢迎登录：<span id="user"></span>！
+			</p>
+			<p class="rt head-btn" onclick="outFn()">
+				退出
+			</p>
+			<p class="rt">
+				当前站：<span id="site"></span>
+			</p>
+		</div>
+		
+
+		<div class="lt-box">
+			<div class="sub-head">
+				<img src="../static/h1.png">
+				<p>
+					今日传输量
+				</p>
+				<p class="sub-rt">
+					<img src="../static/h2.png">
+				</p>
+			</div>
+
+			<div class="lt-top">
+				<div>
+					<p class="lt-img" id="file"></p>
+					<p>文件接收量(<span id="fileNum">个</span>)</p>
+				</div>
+
+				<div>
+					<p class="lt-img" id="data"></p>
+					<p>数据接收量(<span id="dataNum">MB</span>)</p>
+				</div>
+
+			</div>
+
+			<div class="sub-head">
+				<img src="../static/h1.png">
+				<p>
+					各站故障信息
+				</p>
+				<p class="sub-rt">
+					<button type="button" class="layui-btn" onclick="alrFn('./fault.html')">
+						查看更多
+					</button>
+				</p>
+			</div>
+
+			<div class="lt-in" id="deta">
+				<div id="roll">
+					<!-- <ul class="item">
+						<li>
+							鳌江数据接收超时
+						</li>
+						<li>
+							2020-07-21 9:28
+						</li>
+					</ul> -->
+				</div>
+			</div>
+
+
+			<div class="sub-head">
+				<img src="../static/h1.png">
+				<p>
+					图标
+				</p>
+				<p class="sub-rt">
+					<img src="../static/h2.png">
+				</p>
+			</div>
+
+			<div class="lt-btm">
+				<p>
+					<img src="../static/h3.png" alt="">
+					<span>正常</span>
+				</p>
+				<!-- <p>
+					<img src="../static/h4.png" alt="">
+					<span>缺报</span>
+				</p> -->
+				<p>
+					<img src="../static/h4.png" alt="">
+					<span>维护</span>
+				</p>
+				<p>
+					<img src="../static/h6.png" alt="">
+					<span>报警</span>
+				</p>
+			</div>
+
+		</div>
+
+		<div id="maps"></div>
+
+		<div class="rt-box">
+			<div class="sub-head">
+				<img src="../static/h1.png">
+				<p>
+					数据到报显示
+				</p>
+				<p class="sub-rt">
+					<span id="dataTime">
+						<!-- 2020-07-04 08:48 -->
+					</span>
+					<img src="../static/h2.png">
+				</p>
+			</div>
+
+			<div class="rt-top" id="rtTop">
+				<!-- <div>
+					<p>数据类型</p>
+					<p>分钟数据</p>
+				</div>
+				<div class="rt-bor">
+					<p>应到</p>
+					<p>1000</p>
+				</div>
+				<div>
+					<p>实到</p>
+					<p>10900</p>
+				</div> -->
+			</div>
+
+			<div class="sub-head">
+				<img src="../static/h1.png">
+				<p>
+					数据环比图
+				</p>
+				<p class="sub-rt">
+					<button type="button" class="layui-btn" onclick="alrFn('./ring.html','1320px', '560px')">
+						查看更多
+					</button>
+					<!-- <img src="../static/h2.png"> -->
+				</p>
+			</div>
+
+			<div class="main" id="main"></div>
+
+			<div class="sub-head">
+				<img src="../static/h1.png">
+				<p>
+					站点
+				</p>
+				<p class="sub-rt">
+					<img src="../static/h2.png">
+				</p>
+			</div>
+			<div class="layui-form home-form">
+				<div class="layui-form-item" id="check">
+					<!-- <input type="checkbox" value="2" lay-skin="primary" lay-filter="check" title="台站" checked />
+					<input type="checkbox" value="3" lay-skin="primary" lay-filter="check" title="浮标" checked />
+					<input type="checkbox" value="4" lay-skin="primary" lay-filter="check" title="雷达" checked />
+					<input type="checkbox" value="1" lay-skin="primary" lay-filter="check" title="志愿船" checked />
+					<input type="checkbox" value="1" lay-skin="primary" lay-filter="check" title="GPS" checked /> -->
+				</div>
+			</div>
+
+			<div class="sub-head">
+				<img src="../static/h1.png">
+				<p>
+					图标
+				</p>
+				<p class="sub-rt">
+					<img src="../static/h2.png">
+				</p>
+			</div>
+
+			<div class="lt-btm">
+				<p>
+					<img src="../static/icon11.png" alt="">
+					<span>台站</span>
+				</p>
+				<p>
+					<img src="../static/icon21.png" alt="">
+					<span>浮标</span>
+				</p>
+				<p>
+					<img src="../static/icon31.png" alt="">
+					<span>雷达</span>
+				</p>
+				<p>
+					<img src="../static/icon41.png" alt="">
+					<span>志愿船</span>
+				</p>
+				<p>
+					<img src="../static/icon51.png" alt="">
+					<span>GPS</span>
+				</p>
+			</div>
+		</div>
+
+
+		<div class="bt-box">
+			<div class="bt-item">
+				<p>数据查询</p>
+				<div class="item-hide">
+					<!-- <p onclick="alrFn('./call.html')">报警记录</p> -->
+					<p onclick="alrFn('./fault.html')">故障统计</p>
+					<p onclick="alrFn('./rate.html')">数据接收率</p>
+				</div>
+			</div>
+
+			<div class="bt-item">
+				<p>数据观测</p>
+				<div class="item-hide">
+					<p onclick="alrFn('./buoy.html')">浮标观测</p>
+					<p onclick="alrFn('./radar.html')">雷达观测</p>
+					<p onclick="alrFn('./gps.html')">GPS观测</p>
+					<p onclick="alrFn('./ship.html')">志愿船观测</p>
+				</div>
+			</div>
+
+			<div class="bt-item" id="uniHide">
+				<p>系统设置</p>
+				<div class="item-hide">
+					<p onclick="alrFn('./site.html')">站点信息</p>
+					<p onclick="alrFn('./info.html')">人员信息</p>
+					<p class="uniHide" onclick="alrFn('./limit.html')">权限管理</p>
+					<p onclick="alrFn('./confs.html')">传输配置</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="hide-box" id="hide-box">
+			<div class="layui-form hide-top" lay-filter="detaForms">
+				<ul>
+					<li>站名:</li>
+					<li>
+						<input type="text" name="station" disabled class="layui-input top_ipt" />
+					</li>
+				</ul>
+				<ul>
+					<li>位置:</li>
+					<li>
+						<input type="text" name="seat" disabled class="layui-input top_ipt" />
+					</li>
+				</ul>
+				<ul>
+					<li>IP信息:</li>
+					<li>
+						<input type="text" name="ip" disabled class="layui-input top_ipt" />
+					</li>
+				</ul>
+				<ul>
+					<li>数据报到时间:</li>
+					<li>
+						<input type="text" name="newTime" disabled class="layui-input top_ipt" />
+					</li>
+				</ul>
+				<ul>
+					<li>分钟数据文件:</li>
+					<li>
+						<input type="text" name="minuteFile" disabled class="layui-input top_ipt" />
+					</li>
+				</ul>
+				<ul>
+					<li>整点数据文件:</li>
+					<li>
+						<input type="text" name="hourFile" disabled class="layui-input top_ipt" />
+					</li>
+				</ul>
+				<ul>
+					<li>正点数据文件:</li>
+					<li>
+						<input type="text" name="punctualityFile" disabled class="layui-input top_ipt" />
+					</li>
+				</ul>
+			</div>
+
+			<div class="hide-btm" id="hideBtm">
+				<p class="hide-tle">
+					故障推断
+				</p>
+				<form class="layui-form" id="layForm" lay-filter="detaForm">
+					<div class="layui-form-item">
+						<label class="layui-form-label">推断故障:</label>
+						<div class="layui-input-block">
+							<input type="text" name="fault" disabled class="layui-input lay_ipt" />
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">确认故障:</label>
+						<div class="layui-input-block">
+							<input type="text" name="faulCconfirm" autocomplete="off" class="layui-input lay_ipt" />
+						</div>
+					</div>
+
+					<div class="layui-form-item">
+						<label class="layui-form-label">故障处理人:</label>
+						<div class="layui-input-block">
+							<input type="text" name="handler" required lay-verify="handler" autocomplete="off" placeholder="请输入故障处理人" class="layui-input lay_ipt" />
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">故障处理时间:</label>
+						<div class="layui-input-block">
+							<input type="text" name="endTime" id="time" autocomplete="off" placeholder="请输入故障处理时间"
+							 class="layui-input lay_ipt" />
+							<!-- <input type="text" name="endTime" id="time" required lay-verify="endTime" autocomplete="off" placeholder="请输入故障处理时间"
+							 class="layui-input lay_ipt" /> -->
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">备注:</label>
+						<div class="layui-input-block lay_ipt">
+							<textarea name="desc" placeholder="请输入备注" class="layui-textarea lay_ipt" style="resize:none;"></textarea>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<button type="submit" id="subbtn" class="layui-btn subbtn" lay-submit lay-filter="sub">
+							推送
+						</button>
+					</div>
+				</form>
+			</div>
+			
+		</div>
+
+	</body>
+
+	<script src="../public/lib/layui/layui.js"></script>
+	<script src="../public/lib/jquery.js"></script>
+	<script src="../public/lib/echarts.js"></script>
+	<script src="../public/lib/china.js"></script>
+	<script>
+		layui
+			.config({
+				base: "../public/",
+			})
+			.extend({
+				urls: "lib/urls",
+				home: "js/home",
+			})
+			.use("home");
+	</script>
+</html>

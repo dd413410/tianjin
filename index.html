@@ -1,0 +1,100 @@
+<script>
+  sessionStorage.clear();
+</script>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1" />
+
+  <title>海洋观测数据传输与故障响应系统</title>
+  <link rel="stylesheet" href="./public/lib/layui/css/layui.css" />
+  <link rel="stylesheet" href="./css/index.css" />
+</head>
+
+<body>
+  <div class="layui-fluid center">
+    <div class="layui-row">
+      <div class="layui-col-xs4" style="margin-left: 13%;">
+        <div class="lt_img">
+          <img src="./static/bg3.png" />
+        </div>
+      </div>
+
+      <div class="layui-col-xs6">
+        <div class="rt_box">
+          <div class="rt_tle">
+            海洋观测数据传输与故障响应系统
+          </div>
+
+          <div class="form">
+            <div class="bg">
+              <img src="./static/ionc1.png" />
+            </div>
+
+            <form class="layui-form loginform">
+              <div class="layui-form-item loginTle">
+                系统登录
+              </div>
+              <div class="layui-form-item loginItem">
+                <label class="layui-form-label label">
+                  <img src="./static/user.png" />
+                </label>
+                <div class="layui-input-inline rtIpt">
+                  <input type="text" name="user" id="user" required lay-verify="user" placeholder="请输入账号"
+                    autocomplete="off" class="layui-input" />
+                </div>
+              </div>
+
+              <div class="layui-form-item loginItem">
+                <label class="layui-form-label label">
+                  <img src="static/pass.png" />
+                </label>
+                <div class="layui-input-inline rtIpt">
+                  <input type="password" name="pass" id="pass" required lay-verify="pass" placeholder="请输入密码"
+                    autocomplete="off" class="layui-input" />
+                </div>
+              </div>
+
+              <div class="layui-form-item loginType">
+                <!-- <div class="layui-input-block">
+                  <input type="radio" name="cate" value="1" title="监控系统" checked="" />
+                  <input type="radio" name="cate" value="2" title="查询系统" />
+                </div> -->
+              </div>
+
+              <div class="layui-form-item">
+                <div class="layui-input-block btnBox">
+                  <button type="submit" class="layui-btn sub_btn" lay-submit lay-filter="login">
+                    登录
+                  </button>
+                </div>
+              </div>
+
+              <div class="layui-form-item desc">
+                技术支持:杭州蓝昌科技有限公司 电话:0571-87357882
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="./public/lib/layui/layui.js"></script>
+<script>
+  layui
+    .config({
+      base: "./public/"
+    })
+    .extend({
+      urls: "lib/urls",
+      index: "js/index"
+    })
+    .use("index");
+</script>
+
+</html>

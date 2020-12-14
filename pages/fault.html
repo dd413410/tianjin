@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>故障统计</title>
+		<link rel="stylesheet" href="../public/lib/layui/css/layui.css" />
+		<link rel="stylesheet" href="../css/fault.css" />
+	</head>
+	<body>
+
+		<div class="layui-fluid">
+			<div class="layui-row">
+				<div class="layui-col-xs12">
+					<div class="tle">
+						<p class="lt">
+							故障统计
+						</p>
+						<p class="rt layui-icon layui-icon-close" style="cursor: pointer;" id="close"></p>
+					</div>
+				</div>
+			</div>
+
+			<div class="layui-row layui-form title">
+				<div class="layui-row block">
+					<div class="layui-input-block lt">
+						<input type="text" autocomplete="off" placeholder="请输入故障类型" class="layui-input lay_ipt" id="look" />
+					</div>
+
+					<div class="layui-input-block lt">
+						<div class="sele lay_ipt">
+							<select id="type">
+								<option value="0">全部</option>
+								<option value="1">等待处理</option>
+								<option value="2">处理完毕</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="lt">
+						<button class="layui-btn subbtn" onclick="getFn()">
+							查询
+						</button>
+						<button class="layui-btn subbtn" id="load">
+							导出
+						</button>
+					</div>
+				</div>
+			</div>
+			
+			<div class="layui-row count">
+				<!-- 共有数据<span id="total">0</span>条 -->
+			</div>
+
+			<div class="layui-row thead">
+				<div class="layui-col-xs1">站名</div>
+				<div class="layui-col-xs1">数据类型</div>
+				<div class="layui-col-xs1">故障类型</div>
+				<div class="layui-col-xs1">推断故障</div>
+				
+				<div class="layui-col-xs1">确认故障</div>
+
+				<div class="layui-col-xs1">缺失开始时间</div>
+				<div class="layui-col-xs1">缺失结束时间</div>
+
+				<div class="layui-col-xs1">故障处理人</div>
+				<div class="layui-col-xs1">状态</div>
+				<div class="layui-col-xs1">备注</div>
+				<div class="layui-col-xs2">操作</div>
+			</div>
+			<div class="layui-row" id="tbody">
+			<!-- 	<div class='tbody'>
+					<div class="layui-col-xs1">测试</div>
+					<div class="layui-col-xs1">测试</div>
+					<div class="layui-col-xs1">测试</div>
+					<div class="layui-col-xs1">测试</div>
+
+					<div class="layui-col-xs2">测试</div>
+					<div class="layui-col-xs2">测试</div>
+
+					<div class="layui-col-xs1">测试</div>
+					<div class="layui-col-xs1">测试</div>
+					<div class="layui-col-xs1">测试</div>
+					<div class="layui-col-xs1">
+						<img onclick="openFn('1','2','3')" src="../static/2.png" title="修改信息" />
+						<img onclick="deleFn('3')" src="../static/4.png" title="删除" />
+					</div>
+				</div> -->
+			</div>
+			<div id="pag"></div>
+		</div>
+
+		<script id="hand" type="text/html">
+			{{#  layui.each(d, function(index, item){ }}
+				<div class='tbody'>
+					<div class="layui-col-xs1">{{ item.fields.station }}</div>
+					<div class="layui-col-xs1">{{ item.fields.dataType }}</div>
+					<div class="layui-col-xs1">{{ item.fields.faultType }}</div>
+					<div class="layui-col-xs1">{{ item.fields.faultReason }}</div>
+					<div class="layui-col-xs1">{{ item.fields.faulCconfirm }}</div>
+					<div class="layui-col-xs1">{{ item.fields.startTime }}</div>
+					<div class="layui-col-xs1">{{ item.fields.endTime }}</div>
+					<div class="layui-col-xs1">{{ item.fields.handler }}</div>
+					{{#if(item.fields.state==0){}}
+						<div class="layui-col-xs1">待推送</div>
+					{{#} if(item.fields.state ==1){}}
+						<div class="layui-col-xs1">待处理</div>
+					{{#} if(item.fields.state==2){}}
+						<div class="layui-col-xs1">已处理</div>
+					{{#}}}
+					<div class="layui-col-xs1">{{ item.fields.description}}</div>
+					<div class="layui-col-xs2">
+						{{#  if(item.fields.state==2){ }}
+							<img onclick="deleFn({{item.pk}})" src="../static/4.png" title="删除" />
+						{{#} else {}}
+							<img onclick="openFn({{item.pk}})" src="../static/2.png" title="修改信息" />
+							<img onclick="deleFn({{item.pk}})" src="../static/4.png" title="删除" />
+						{{#}}}  
+					</div>
+				</div>
+			{{#})}}
+		</script>
+
+
+		<div class="layui-fluid lim" id="add">
+			<div class="layui-row">
+				<div class="layui-col-xs6 layui-col-xs-offset3 site-box">
+					<div class="tle">
+						<p class="lt" id="tle">
+							修改
+						</p>
+						<p class="rt layui-icon layui-icon-close" style="cursor: pointer;" onclick="openFn()"></p>
+					</div>
+					<form class="layui-form layForm" lay-filter="addForm" id="addForm">
+						<input type="hidden" name="id">
+						<div class="layui-form-item">
+							<label class="layui-form-label">站点名:</label>
+							<div class="layui-input-block">
+								<input type="text" name="station" disabled autocomplete="off" placeholder="请输入站点名" class="layui-input lay_ipt" />
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">数据类型:</label>
+							<div class="layui-input-block">
+								<input type="text" name="dataType" disabled autocomplete="off" placeholder="请输入数据类型" class="layui-input lay_ipt" />
+							</div>
+						</div>
+
+						<div class="layui-form-item">
+							<label class="layui-form-label">故障类型:</label>
+							<div class="layui-input-block">
+								<input type="text" name="faultType" autocomplete="off" placeholder="请输入故障类型" class="layui-input lay_ipt" />
+							</div>
+						</div>
+
+						<div class="layui-form-item">
+							<label class="layui-form-label">故障原因:</label>
+							<div class="layui-input-block">
+								<input type="text" name="faultReason" required lay-verify="site" autocomplete="off" placeholder="请输入故障原因" class="layui-input lay_ipt" />
+							</div>
+						</div>
+
+						<div class="layui-form-item">
+							<label class="layui-form-label">缺失时间:</label>
+							<div class="layui-input-block">
+								<input type="text" name="startTime" disabled class="layui-input lay_ipt" />
+							</div>
+						</div>
+
+						<div class="layui-form-item">
+							<label class="layui-form-label">处理人:</label>
+							<div class="layui-input-block">
+								<input type="text" name="handler" required lay-verify="handler" autocomplete="off" placeholder="请输入站点名" class="layui-input lay_ipt" />
+							</div>
+						</div>
+
+						<div class="layui-form-item">
+							<label class="layui-form-label">备注:</label>
+							<div class="layui-input-block lay_ipt">
+								<textarea name="description" placeholder="请输入备注" class="layui-textarea" style="resize:none;"></textarea>
+							</div>
+						</div>
+
+						<div class="layui-form-item">
+							<div class="layui-input-block">
+								<button type="submit" class="layui-btn subbtn" lay-submit lay-filter="sub">
+									提交
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</body>
+	<script src="../public/lib/layui/layui.js"></script>
+	<script>
+		layui
+			.config({
+				base: "../public/",
+			})
+			.extend({
+				urls: "lib/urls",
+				fault: "js/fault",
+			})
+			.use("fault");
+	</script>
+</html>

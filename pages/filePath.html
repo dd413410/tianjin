@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>传输文件配置</title>
+		<link rel="stylesheet" href="../public/lib/layui/css/layui.css" />
+		<link rel="stylesheet" href="../css/filePath.css" />
+	</head>
+	<body>
+		<div class="layui-form" lay-filter="filePath">
+			<div class="layui-form-item">
+				<label class="layui-form-label">文件存放目录</label>
+				<div class="layui-input-block">
+					<input type="tel" name="receivePath" lay-verify="required" lay-reqText="请输入文件存放目录" placeholder="请输入文件存放目录" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">命令存放目录</label>
+				<div class="layui-input-block">
+					<input type="tel" name="commandPath" lay-verify="required" lay-reqText="请输入命令存放目录" placeholder="请输入命令存放目录" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">日志存放路径</label>
+				<div class="layui-input-block">
+					<input type="tel" name="logPath" lay-verify="required" lay-reqText="请输入日志存放路径" placeholder="请输入日志存放路径" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item btn-box">
+				<button class="layui-btn change" lay-submit lay-filter="change">修改</button>
+				<button type="reset" class="layui-btn" id="close">取消</button>
+			</div>
+		</div>
+
+	</body>
+	<script src="../public/lib/layui/layui.js"></script>
+	<script>
+		layui
+			.config({
+				base: "../public/",
+			})
+			.extend({
+				urls: "lib/urls",
+				func: "lib/func",
+				filePath: "js/filePath",
+			})
+			.use("filePath");
+	</script>
+</html>

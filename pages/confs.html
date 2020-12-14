@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>站点信息</title>
+		<link rel="stylesheet" href="../public/lib/layui/css/layui.css" />
+		<link rel="stylesheet" href="../public/lib/dtree/dtree.css">
+		<link rel="stylesheet" href="../public/lib/dtree/font/dtreefont.css">
+		<link rel="stylesheet" href="../css/confs.css" />
+	</head>
+	<body>
+		<div class="layui-fluid">
+			<div class="tle">
+				<p class="lt">
+					配置信息
+				</p>
+				<p class="rt layui-icon layui-icon-close" style="cursor: pointer;" id="close"></p>
+			</div>
+		</div>
+
+		<div class="conf-center">
+			<div class="conf-lt" id="tree">
+				<form class="layui-form layForm" lay-filter="limitForm" id="limitForm">
+					<div id="elemTree">
+
+					</div>
+					<div class="btn-box">
+						<button type="button" class="layui-btn layui-btn-sm obtain" id="treeBtn">
+							读取
+						</button>
+						<button type="button" class="layui-btn layui-btn-sm" id="path">
+							传输文件路径
+						</button>
+					</div>
+				</form>
+			</div>
+
+			<div class="conf-list">
+				<div class="layui-fluid layui-form">
+					<div class="layui-row thead">
+						<div class="layui-col-xs2">
+							<input type="checkbox" lay-skin="primary" lay-filter="treeChek" id="treeChek" title="全选">
+						</div>
+						<div class="layui-col-xs3">站点名</div>
+						<div class="layui-col-xs3">IP</div>
+						<div class="layui-col-xs2">状态</div>
+						<div class="layui-col-xs2">操作</div>
+					</div>
+
+					<div class="layui-row" id="tbody">
+						<!-- <div class="tbody">
+							<div class="layui-col-xs2">
+								<input type="checkbox" lay-skin="primary" lay-filter="treeChek">
+							</div>
+							<div class="layui-col-xs3">站点名</div>
+							<div class="layui-col-xs3">IP</div>
+							<div class="layui-col-xs2">状态</div>
+							<div class="layui-col-xs2">操作</div>
+						</div> -->
+					</div>
+				</div>
+				<div id="pag"></div>
+				<div style="padding-left: 20px;box-sizing: border-box;">
+					<button class="layui-btn layui-btn-sm layui-btn-normal" id="batch">批量下发</button>
+				</div>
+			</div>
+		</div>
+
+	</body>
+	<script src="../public/lib/layui/layui.js"></script>
+	<script>
+		layui
+			.config({
+				base: "../public/",
+			})
+			.extend({
+				dtree: "lib/dtree/dtree",
+				urls: "lib/urls",
+				func: "lib/func",
+				confs: "js/confs",
+			})
+			.use("confs");
+	</script>
+</html>

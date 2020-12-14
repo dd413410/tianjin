@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>站点信息</title>
+		<link rel="stylesheet" href="../public/lib/layui/css/layui.css" />
+		<link rel="stylesheet" href="../public/lib/dtree/dtree.css">
+		<link rel="stylesheet" href="../public/lib/dtree/font/dtreefont.css">
+		<link rel="stylesheet" href="../css/site.css" />
+	</head>
+
+	<body>
+		<div class="layui-fluid">
+			<div class="layui-row">
+				<div class="layui-col-xs12">
+					<div class="tle">
+						<p class="lt">
+							站点信息
+						</p>
+						<p class="rt layui-icon layui-icon-close" style="cursor: pointer;" id="close"></p>
+					</div>
+				</div>
+			</div>
+			<div class="layui-row title">
+				<div class="form">
+					<form class="layui-form block">
+						<div class="sele lay_ipt">
+							<select id="oneId" fn="getErFn" lay-filter="filt"></select>
+						</div>
+					</form>
+
+					<form class="layui-form block">
+						<div class="sele lay_ipt">
+							<select id="twoId" fn="getSanFn" lay-filter="filt"></select>
+						</div>
+					</form>
+
+					<form class="layui-form block">
+						<div class="sele lay_ipt">
+							<select id="threeId" fn="getSiFn" lay-filter="filt"></select>
+						</div>
+					</form>
+
+					<form class="layui-form block">
+						<div class="sele lay_ipt">
+							<select id="fourId" fn="getWuFn" lay-filter="filt"></select>
+						</div>
+					</form>
+					<form class="layui-form block">
+						<div class="sele lay_ipt">
+							<select id="fiveId" lay-filter="filt"></select>
+						</div>
+					</form>
+
+					<div class="block">
+						<button class="layui-btn subbtn" onclick="getFn()">
+							查询
+						</button>
+					</div>
+					<div class="block">
+						<button class="layui-btn subbtn" onclick="getFns()">
+							导出
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="layui-row">
+				<button class="layui-btn subbtn" onclick="openFn()">
+					添加站点
+				</button>
+			</div>
+
+			<div class="layui-row thead">
+				<div class="layui-col-xs1">站点名</div>
+				<div class="layui-col-xs1">站类型</div>
+
+				<div class="layui-col-xs1">站代码</div>
+				<div class="layui-col-xs1">站名代码</div>
+				<div class="layui-col-xs1">区站号</div>
+
+				<div class="layui-col-xs1">观测类型</div>
+				<div class="layui-col-xs1">经度</div>
+				<div class="layui-col-xs1">纬度</div>
+
+				<div class="layui-col-xs1">所属站点</div>
+				<div class="layui-col-xs1">IP</div>
+
+				<div class="layui-col-xs2">操作</div>
+			</div>
+			<div class="layui-row" id="tbody">
+				<!-- <div class="tbody">
+					<div class="layui-col-xs1">测试</div>
+					<div class="layui-col-xs1">测试</div>
+					<div class="layui-col-xs1">测试</div>
+					<div class="layui-col-xs1">测试</div>
+					<div class="layui-col-xs1">测试</div>
+					<div class="layui-col-xs1">测试</div>
+					<div class="layui-col-xs1">测试</div>
+					<div class="layui-col-xs1">测试</div>
+					<div class="layui-col-xs1">测试</div>
+					<div class="layui-col-xs1">测试</div>
+					<div class="layui-col-xs2">
+						<img onclick="openFn('1','2','3')" src="../static/2.png" title="修改信息" />
+						<img onclick="setIngFn('1')" src="../static/1.png" title="设置"/>
+						<img onclick="deleFn('3')" src="../static/4.png" title="删除" />
+					</div>
+				</div> -->
+			</div>
+			<div id="pag"></div>
+		</div>
+
+	</body>
+	<script src="../public/lib/layui/layui.js"></script>
+	<script>
+		layui
+			.config({
+				base: "../public/",
+			})
+			.extend({
+				urls: "lib/urls",
+				site: "js/site",
+			})
+			.use("site");
+	</script>
+
+</html>
